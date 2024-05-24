@@ -12,7 +12,9 @@ export default {
           light: "#dff9fb",
           default: "#c7ecee",
           dark: "#95afc0"
-        }
+        },
+        myYellow: '#F4BC32',
+        myPurple: '#E7586D'
       },
       fontFamily: {
         poetsen: ["Poetsen One", "sans-serif"],
