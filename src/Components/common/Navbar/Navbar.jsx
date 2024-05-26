@@ -24,7 +24,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className='bg-myColor-default dark:bg-base-300 fixed w-full'>
+        <div className='bg-myColor-default dark:bg-base-300 w-full shadow-lg'>
             <div className="navbar justify-between container mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
