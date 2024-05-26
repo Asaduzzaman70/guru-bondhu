@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import DarkModeToggle from '../../../DarkModeToggle';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import { CreateContext } from '../../../contexts/AuthProvider';
 
 const Navbar = () => {
+    const { user, logOut, setUser } = useContext(CreateContext);
     const location = useLocation();
     console.log(location.pathname);
+
+    const handleLogout = () =>{
+        logOut()
+            .then(() =>{
+                console.log('Log Out');
+                setUser(null);
+            })
+            .catch(error =>{
+                console.log(error);
+            })
+    }
+
     const navLi = <>
         <li className={`${location?.pathname === '/' ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
             <NavLink to={'/'}>Home</NavLink>
@@ -46,19 +60,27 @@ const Navbar = () => {
                 </div>
                 <div className="space-x-3 mr-4">
                     <DarkModeToggle />
-                    <div className='flex flex-col'>
-                        <Link to={'/login'}>
-                            <button className="
+                    {
+                        user ? 
+                        <button onClick={handleLogout} className='font-bold mb-1 text-myPurple dark:text-myYellow'>
+                            Logout
+                        </button>
+                        : <div className='flex flex-col'>
+                                <Link to={'/login'}>
+                                    <button className={`
+                            ${location?.pathname === '/login' ? 'text-base-300 dark:text-myColor-dark' : 'text-myPurple dark:text-myYellow'}
                         hover:text-base-300
-                        dark:hover:text-myColor-dark text-myPurple dark:text-myYellow font-bold mb-1">Login</button>
-                        </Link>
-                        <span className='border-t-2 border-base-300 dark:border-gray-200' />
-                        <Link to={'/register'}>
-                            <button className="                        
+                        dark:hover:text-myColor-dark font-bold mb-1`}>Login</button>
+                                </Link>
+                                <span className='border-t-2 border-base-300 dark:border-gray-200' />
+                                <Link to={'/register'}>
+                                    <button className={`
+                            ${location?.pathname === '/register' ? 'text-base-300 dark:text-myColor-dark' : 'text-myPurple dark:text-myYellow'}
                         hover:text-base-300
-                        dark:hover:text-myColor-dark text-myPurple dark:text-myYellow font-bold mt-1">Register</button>
-                        </Link>
-                    </div>
+                        dark:hover:text-myColor-dark font-bold mt-1`}>Register</button>
+                                </Link>
+                            </div>
+                    }
                 </div>
             </div>
         </div>

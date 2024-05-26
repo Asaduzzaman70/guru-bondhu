@@ -72,6 +72,7 @@ const AuthProvider = ({ children }) => {
 
     const authInfo = {
         user,
+        setUser,
         loader,
         register,
         namePhotoUrl,
