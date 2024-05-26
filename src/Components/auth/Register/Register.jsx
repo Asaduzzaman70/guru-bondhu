@@ -63,7 +63,7 @@ const Register = () => {
     };
 
     return (
-        <div className="">
+        <div className="my-12">
             <div className="container mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2">
                     <div className="w-full">
