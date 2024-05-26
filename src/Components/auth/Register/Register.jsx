@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { CreateContext } from "../../../contexts/AuthProvider";
 import swal from "sweetalert";
 
 const Register = () => {
-    const { register, namePhotoUrl } = useContext(CreateContext);
+    const { register, namePhotoUrl, user } = useContext(CreateContext);
     const [showPass, setShowPass] = useState(true);
     const navigate = useNavigate();
 
@@ -61,6 +61,12 @@ const Register = () => {
                 swal("Error", "This email is already registered.", "error");
             });
     };
+
+    useEffect(() => {
+        if (user) {
+            navigate(location?.state ? location.state : '/');
+        }
+    }, [user])
 
     return (
         <div className="my-12">

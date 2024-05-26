@@ -1,15 +1,16 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import { CreateContext } from "../../../contexts/AuthProvider";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
     const [showPass, setShowPass] = useState(true);
-    const { logIn, logInWithMedia } = useContext(CreateContext)
+    const { user, logIn, logInWithMedia } = useContext(CreateContext)
 
     const location = useLocation();
     const navigate = useNavigate();
+    const users = useLoaderData();
 
     // Login form on Submit
     const handleLogin = e => {
@@ -39,15 +40,50 @@ const Login = () => {
     // Media login 
     const handleMedia = (arg) => {
         logInWithMedia(arg)
-            .then(() => {
-                toast.success('Successful login');
+            .then((result) => {
+                const email = result?.user?.email ? result.user.email : result.user?.uid
+                const emailAndUid = { email };
 
-                navigate(location?.state ? location.state : '/');
+                // Check if the user already exists in the database
+                const findUser = users.find(user => user.email === email);
+                if (!findUser) {
+                    // If user doesn't exist, make a POST request to create the user
+                    fetch('http://localhost:5000/users', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(emailAndUid)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log('User Information', data);
+                            if (data.insertedId) {
+                                toast.success('Successfully Set User');
+                            }
+                        })
+                        .catch(error => {
+                            toast.error('Failed to set user');
+                            console.error(error);
+                        });
+                } else {
+                    // If user already exists, show a message indicating that they're already created
+                    toast.info('User already exists');
+                }
+
+                toast.success('Successful login');
             })
             .catch(error => {
                 alert(error.message);
             })
     }
+
+
+    useEffect(() => {
+        if (user) {
+            navigate(location?.state ? location.state : '/');
+        }
+    }, [user])
 
     return (
         <div className="my-12">
@@ -77,16 +113,16 @@ const Login = () => {
                         {/* Media login */}
                         <div className="text-center mb-10 mt-5">
                             <p className="divider text-myText-default italic">Login with</p>
-                            <button 
-                            onClick={()=> handleMedia('google')}
-                            className="btn bg-transparent text-myPurple border-none hover:bg-transparent hover:text-myText-dark text-4xl
+                            <button
+                                onClick={() => handleMedia('google')}
+                                className="btn bg-transparent text-myPurple border-none hover:bg-transparent hover:text-myText-dark text-4xl
                             dark:hover:text-myYellow dark:text-myText-light
                             ">
                                 <FaGoogle />
                             </button>
-                            <button 
-                            onClick={()=> handleMedia('gitHub')}
-                            className="btn bg-transparent text-myPurple border-none hover:bg-transparent hover:text-myText-dark text-4xl
+                            <button
+                                onClick={() => handleMedia('gitHub')}
+                                className="btn bg-transparent text-myPurple border-none hover:bg-transparent hover:text-myText-dark text-4xl
                             dark:hover:text-myYellow dark:text-myText-light
                             ">
                                 <FaGithub />

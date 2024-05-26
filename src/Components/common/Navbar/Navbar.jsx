@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import DarkModeToggle from '../../../DarkModeToggle';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { CreateContext } from '../../../contexts/AuthProvider';
@@ -6,15 +6,24 @@ import { CreateContext } from '../../../contexts/AuthProvider';
 const Navbar = () => {
     const { user, logOut, setUser } = useContext(CreateContext);
     const location = useLocation();
+    const [photo, setPhoto] = useState(null);
     console.log(location.pathname);
 
-    const handleLogout = () =>{
+
+    useEffect(() => {
+        const photo = user?.photoURL;
+        setPhoto(photo)
+    }, [user])
+
+    console.log(photo);
+
+    const handleLogout = () => {
         logOut()
-            .then(() =>{
+            .then(() => {
                 console.log('Log Out');
                 setUser(null);
             })
-            .catch(error =>{
+            .catch(error => {
                 console.log(error);
             })
     }
@@ -59,13 +68,26 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="space-x-3 mr-4">
-                    <DarkModeToggle />
+                    <div className='flex flex-col-reverse md:flex-row md:space-x-4'>
+                        <DarkModeToggle />
+                        {
+                            user ?
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img alt="Tailwind CSS Navbar component" src={photo} />
+                                    </div>
+                                </div>
+                                : ''
+                        }
+                    </div>
                     {
-                        user ? 
-                        <button onClick={handleLogout} className='font-bold mb-1 text-myPurple dark:text-myYellow'>
-                            Logout
-                        </button>
-                        : <div className='flex flex-col'>
+                        user ?
+                            <>
+                                <button onClick={handleLogout} className='font-bold mb-1 text-myPurple dark:text-myYellow'>
+                                    Logout
+                                </button>
+                            </>
+                            : <div className='flex flex-col'>
                                 <Link to={'/login'}>
                                     <button className={`
                             ${location?.pathname === '/login' ? 'text-base-300 dark:text-myColor-dark' : 'text-myPurple dark:text-myYellow'}
