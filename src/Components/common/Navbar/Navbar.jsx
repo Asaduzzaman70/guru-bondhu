@@ -12,7 +12,9 @@ const Navbar = () => {
 
     useEffect(() => {
         const photo = user?.photoURL;
-        setPhoto(photo)
+        if (photo) {
+            setPhoto(photo);
+        }
     }, [user])
 
     console.log(photo);
@@ -68,24 +70,39 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="space-x-3 mr-4">
-                    <div className='flex flex-col-reverse md:flex-row md:space-x-4'>
+                    <div className='flex md:space-x-4'>
                         <DarkModeToggle />
                         {
                             user ?
-                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                    <div className="w-10 rounded-full">
-                                        <img alt="Tailwind CSS Navbar component" src={photo} />
-                                    </div>
-                                </div>
+                                <>
+                                    <details className="dropdown">
+                                        <summary className="m-1 btn bg-transparent border-none hover:bg-transparent">
+                                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar tooltip tooltip-left" data-tip={`${user?.displayName}`}>
+                                                <div className="w-10 rounded-full border-2 border-myPurple dark:border-myYellow">
+                                                    <img alt="Tailwind CSS Navbar component" src={photo? photo : 'https://i.ibb.co/DzpFW4w/no-user.png'} />
+                                                </div>
+                                            </div>
+                                        </summary>
+                                        <ul className="p-2 shadow-2xl menu dropdown-content z-[1]  rounded-box w-64 right-0 bg-myColor-light dark:bg-myText-dark">
+                                            <li>
+                                                <Link className='font-bold mb-1 text-myPurple dark:text-myYellow'>
+                                                    My Assignments
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <button onClick={handleLogout} className='font-bold mb-1 text-myPurple dark:text-myYellow'>
+                                                    Logout
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </details>
+                                </>
                                 : ''
                         }
                     </div>
                     {
                         user ?
                             <>
-                                <button onClick={handleLogout} className='font-bold mb-1 text-myPurple dark:text-myYellow'>
-                                    Logout
-                                </button>
                             </>
                             : <div className='flex flex-col'>
                                 <Link to={'/login'}>
