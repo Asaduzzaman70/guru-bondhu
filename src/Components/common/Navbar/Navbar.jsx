@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import DarkModeToggle from '../../../DarkModeToggle';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { CreateContext } from '../../../contexts/AuthProvider';
+import Aos from 'aos';
+import "aos/dist/aos.css";
+
 
 const Navbar = () => {
     const { user, logOut, setUser } = useContext(CreateContext);
@@ -30,6 +33,12 @@ const Navbar = () => {
             })
     }
 
+    useEffect(() => {
+        Aos.init({
+            duration: 900
+        });
+    }, []);
+
     const navLi = <>
         <li className={`${location?.pathname === '/' ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
             <NavLink to={'/'}>Home</NavLink>
@@ -49,7 +58,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className='bg-myColor-default dark:bg-base-300 w-full shadow-lg'>
+        <div className='bg-myColor-default dark:bg-base-300 w-full shadow-lg' data-aos="fade-down">
             <div className="navbar justify-between container mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -79,7 +88,7 @@ const Navbar = () => {
                                         <summary className="m-1 btn bg-transparent border-none hover:bg-transparent">
                                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar tooltip tooltip-left" data-tip={`${user?.displayName}`}>
                                                 <div className="w-10 rounded-full border-2 border-myPurple dark:border-myYellow">
-                                                    <img alt="Tailwind CSS Navbar component" src={photo? photo : 'https://i.ibb.co/DzpFW4w/no-user.png'} />
+                                                    <img alt="Tailwind CSS Navbar component" src={photo ? photo : 'https://i.ibb.co/DzpFW4w/no-user.png'} />
                                                 </div>
                                             </div>
                                         </summary>
