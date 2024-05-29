@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1959px" height="758px" viewBox="0 0 1959 758" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="100%" y1="24.3275056%" x2="7.74424114%" y2="25.6331347%" id="linearGradient-1">
+            <stop stop-color="#D8F5F6" offset="0%"></stop>
+            <stop stop-color="#62C1C5" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M429.668506,848.201638 C664.784561,875.175737 1192.30374,752.835358 1387.88685,583.851404 C1537.02824,454.993132 1918.81645,431.699104 1934.45869,202.326941 C1944.00058,62.4079982 1860.21479,-74.7674842 1640.77934,-119.510526 C1284.29428,-192.198083 911.715766,43.9815644 750.989038,85.900995 C515.663797,147.2766 112.525474,255.725476 52.0750493,373.759511 C-72.4946275,616.991244 134.687446,814.359422 429.668506,848.201638 Z" id="Oval-7-Copy" fill="url(#linearGradient-1)" fill-rule="nonzero" transform="translate(975.184808, 359.314442) rotate(17.000000) translate(-975.184808, -359.314442) "></path>
+    </g>
+</svg>
