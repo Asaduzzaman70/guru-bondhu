@@ -18,7 +18,7 @@ const Banner = () => {
                                 1000,
                             ]}
                             speed={250}
-                            wrapper="h1"
+                            wrapper="div"
                             cursor={false}
                             className='font-poetsen lg:text-8xl text-myPurple dark:text-myYellow type md:inline-block'
                         />

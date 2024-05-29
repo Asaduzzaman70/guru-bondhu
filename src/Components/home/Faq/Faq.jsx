@@ -22,7 +22,7 @@ const Faq = ({ data }) => {
                     <h1 className="font-poetsen text-5xl text-right text-myPurple dark:text-myYellow animate__animated animate__fadeInUp uppercase drop-shadow-2xl">FAQ</h1>
                     <div className='space-y-4 mt-12'>
                         {
-                            data.map(faq => faq_Tag(faq.question, faq.answer))
+                            data.map(faq => <div key={faq._id}>{faq_Tag(faq.question, faq.answer)}</div>)
                         }
                     </div>
                 </div>

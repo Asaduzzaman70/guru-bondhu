@@ -5,6 +5,7 @@ import App from "../App";
 import Register from "../Components/auth/Register/Register";
 import Login from "../Components/auth/Login/Login";
 import Home from "../Pages/Home";
+import CreateAssignments from "../Pages/CreateAssignments";
 
 
 
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
                 path: '/login',
                 element: <Login/>,
                 loader: () => fetch('http://localhost:5000/users')
+            },
+            {
+                path: '/createAssignments',
+                element: <CreateAssignments/>,
             }
         ]
     },
