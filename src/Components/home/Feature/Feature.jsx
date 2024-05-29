@@ -34,8 +34,8 @@ const Feature = () => {
     }
 
     return (
-        <div className=' my-24'>
-            <div className='hidden dark:inline'>
+        <div className='my-40'>
+            <div className='hidden dark:inline' id='feature'>
                 <h1 className='font-poetsen text-5xl text-center text-myPurple dark:text-myYellow animate__animated animate__fadeInUp uppercase drop-shadow-2xl'>Discover Our Key Features</h1>
             </div>
             <div className='bg-no-repeat bg-cover py-24 dark:py-12 bg-center dark:my-0' style={{ backgroundImage: `URL(${bgFeat})` }} data-aos="fade-up" data-aos-duration="2000">

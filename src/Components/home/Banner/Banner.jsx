@@ -5,7 +5,7 @@ import '../Banner/Banner.css';
 
 const Banner = () => {
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto my-40" id='home'>
             <div className='flex flex-col-reverse lg:flex-row my-9 md:my-16 lg:my-28 justify-center items-center'>
                 <div className='lg:w-2/3 lg:px-28 text-center lg:text-left'>
                     <h1 className='font-poetsen text-6xl lg:text-8xl text-myPurple dark:text-myYellow animate__animated animate__fadeInUp mb-8'>

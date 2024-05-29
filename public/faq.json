@@ -1,0 +1,26 @@
+[
+    {
+        "question": "What is Guru Bondhu?",
+        "answer": "Guru Bondhu is an online platform where students can create, submit, and grade assignments collaboratively, making group study sessions more productive and fun."
+    },
+    {
+        "question": "How do I create an assignment?",
+        "answer": "To create an assignment, simply navigate to the 'Create Assignment' page, fill in the required details, and click 'Submit'. Your assignment will be available for your group to work on."
+    },
+    {
+        "question": "Can I customize the theme?",
+        "answer": "Yes, you can! Guru Bondhu offers various theme customization options so you can personalize your study experience to match your style."
+    },
+    {
+        "question": "How does grading work?",
+        "answer": "After submitting an assignment, it will appear in the 'Pending Assignments' section of your friends. They can then grade your assignment and provide feedback directly on the platform."
+    },
+    {
+        "question": "Is my data secure?",
+        "answer": "Absolutely. We use JWT authentication to ensure that your data is secure and private. Your information is only accessible to authorized users."
+    },
+    {
+        "question": "What if I forget my password?",
+        "answer": "No worries! Simply click on the 'Forgot Password' link on the login page, and follow the instructions to reset your password via email."
+    }
+]
