@@ -115,13 +115,13 @@ const CreateAssignments = () => {
         <div className="container mx-auto my-28">
             <div>
                 <div className="text-center space-y-6">
-                    <h3 className="text-4xl font-poetsen text-myPurple dark:text-myYellow">Create New Assignment</h3>
-                    <p className="text-xl text-myText-default font-light px-6 lg:px-0 lg:w-3/5 mx-auto">
+                    <h3 className="text-4xl font-poetsen text-myPurple dark:text-myYellow animate__animated animate__fadeInUp">Create New Assignment</h3>
+                    <p className="text-xl text-myText-default font-light px-6 lg:px-0 lg:w-3/5 mx-auto animate__animated animate__fadeInUp">
                         Easily create new assignments for your group with our intuitive form. Input the assignment details, set deadlines, and add any necessary resources. Collaborate with your study buddies and keep track of everyone's progress in one convenient place.
                     </p>
                 </div>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 px-5 mt-9 lg:mt-24 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 px-5 mt-9 lg:mt-24 gap-8" data-aos="fade-up">
                 {/* Form Section */}
                 <div>
                     <form onSubmit={handleCreateAssignment} className="space-y-8">
@@ -222,7 +222,7 @@ const CreateAssignments = () => {
                     </form>
                 </div>
                 {/* Another Section */}
-                <div className="p-8 bg-myColor-default dark:bg-base-200 rounded-xl">
+                <div className="p-8 bg-myColor-default dark:bg-base-200 rounded-xl" data-aos="fade-up">
                     <div className="bg-no-repeat bg-cover bg-center h-96 rounded-lg" style={{ backgroundImage: `URL(${formData.photoUrl.length !== 0 ? formData.photoUrl : 'https://i.ibb.co/Zx9bTkt/logo-2.png'})` }}></div>
                     <h1 className="text-5xl text-myPurple dark:text-myYellow font-poetsen mt-12">{formData.title.length !== 0 ? formData.title :
                         <p className="text-myText-default font-poetsen">

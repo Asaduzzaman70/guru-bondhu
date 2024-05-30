@@ -6,30 +6,36 @@ import Register from "../Components/auth/Register/Register";
 import Login from "../Components/auth/Login/Login";
 import Home from "../Pages/Home";
 import CreateAssignments from "../Pages/CreateAssignments";
+import PrivateRouter from "./PrivateRouter";
+import Assignments from "../Pages/Assignments/Assignments";
 
 
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <App/>,
+        element: <App />,
         children: [
             {
                 path: '/',
-                element: <Home/>
+                element: <Home />
             },
             {
                 path: '/register',
-                element: <Register/>
+                element: <Register />
             },
             {
                 path: '/login',
-                element: <Login/>,
+                element: <Login />,
                 loader: () => fetch('http://localhost:5000/users')
             },
             {
                 path: '/createAssignments',
-                element: <CreateAssignments/>,
+                element: <PrivateRouter><CreateAssignments /></PrivateRouter>,
+            },
+            {
+                path: '/assignments',
+                element: <Assignments/>
             }
         ]
     },
