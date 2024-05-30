@@ -1,8 +1,14 @@
-import React, { useState, forwardRef } from "react";
+import axios from "axios";
+import React, { useState, forwardRef, useContext } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { CreateContext } from "../contexts/AuthProvider";
+import swal from "sweetalert";
 
 const CreateAssignments = () => {
+    const { user } = useContext(CreateContext);
+
+
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -11,6 +17,7 @@ const CreateAssignments = () => {
         dueDate: new Date(),
         photoUrl: ''
     });
+
 
     // Custom Date Picker Input
     const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -48,7 +55,61 @@ const CreateAssignments = () => {
     };
 
     // For debugging purposes
-    console.log(formData.dueDate);
+    // console.log(formData.dueDate);
+
+    const handleCreateAssignment = e => {
+        e.preventDefault();
+        const form = formData;
+        // console.log('This is form', form);
+        const emailGitHubId = user?.uid;
+        const name = user?.displayName;
+        // console.log(emailGitHubId);
+
+        // POST Data - acknowledged
+        swal({
+            title: "Are you sure to create this assignments?",
+            text: "Clicked okay then create this assignments",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    axios.post('http://localhost:5000/assignments', { ...form, emailGitHubId, name })
+                        .then(res => {
+                            console.log(res.data);
+                            if (res.data.acknowledged) {
+                                swal("Your Assignments Is Created", {
+                                    icon: "success",
+                                });
+                                // Reset Form
+                                setFormData({
+                                    title: '',
+                                    description: '',
+                                    marks: '',
+                                    diffLevel: 'Easy',
+                                    dueDate: new Date(),
+                                    photoUrl: ''
+                                })
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        })
+                } else {
+                    swal("Your Input field is safe!");
+                }
+            });
+
+        // axios.post('http://localhost:5000/assignments', { ...form, emailGitHubId, name })
+        //     .then(res => {
+        //         console.log(res.data);
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     })
+    }
+
 
     return (
         <div className="container mx-auto my-28">
@@ -63,7 +124,7 @@ const CreateAssignments = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 px-5 mt-9 lg:mt-24 gap-8">
                 {/* Form Section */}
                 <div>
-                    <form className="space-y-8">
+                    <form onSubmit={handleCreateAssignment} className="space-y-8">
                         {/* Title */}
                         <div className="form-control">
                             <label className="label">
@@ -154,6 +215,10 @@ const CreateAssignments = () => {
                                 required
                             />
                         </div>
+                        {/* Submit Button */}
+                        <div className="form-control mt-12 mb-6">
+                            <input className="input input-bordered bg-myYellow text-myPurple font-bold uppercase tracking-wider text-xl btn hover:opacity-85 dark:bg-myPurple dark:text-myYellow dark:hover:opacity-85" type="submit" value="Create" />
+                        </div>
                     </form>
                 </div>
                 {/* Another Section */}
@@ -167,9 +232,7 @@ const CreateAssignments = () => {
                     <p className="text-xl text-myText-default font-light mt-6 text-justify">
                         {
                             formData.description.length !== 0 ? formData.description
-                                : <p className="text-myText-default">
-                                    Assignment Description
-                                </p>
+                                : <span className="text-myText-default">Assignment Description</span>
                         }
                     </p>
                     <div className="my-7">
@@ -186,16 +249,16 @@ const CreateAssignments = () => {
                             <p className="text-2xl text-myPurple dark:text-myYellow font-light text-justify">
                                 {
                                     formData.marks.length !== 0 ? formData.marks
-                                        : <p className="text-myText-default">
+                                        : <span className="text-myText-default">
                                             00
-                                        </p>
+                                        </span>
                                 }
                             </p>
                         </div>
                     </div>
                     <div className="flex items-center space-x-3 my-7">
                         <h1 className="text-2xl text-myPurple dark:text-myYellow font-bold">Assignment Created Date:</h1>
-                        <p className="text-2xl text-myPurple dark:text-myYellow font-light text-justify">
+                        <div className="text-2xl text-myPurple dark:text-myYellow font-light text-justify">
                             {
                                 formData.dueDate.length !== 0 ?
                                     (
@@ -211,7 +274,7 @@ const CreateAssignments = () => {
                                         MMMM d, yyyy h:mm aa
                                     </p>
                             }
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>

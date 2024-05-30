@@ -10,7 +10,7 @@ const Navbar = () => {
     const { user, logOut, setUser } = useContext(CreateContext);
     const location = useLocation();
     const [photo, setPhoto] = useState(null);
-    console.log(location.pathname);
+    // console.log(location.pathname);
 
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const Navbar = () => {
         }
     }, [user])
 
-    console.log(photo);
+    // console.log(photo);
 
     const handleLogout = () => {
         logOut()
