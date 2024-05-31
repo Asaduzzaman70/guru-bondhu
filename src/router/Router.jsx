@@ -10,12 +10,14 @@ import PrivateRouter from "./PrivateRouter";
 import Assignments from "../Pages/Assignments/Assignments";
 import UpdateAssignments from "../Components/common/UpdateAssignments/UpdateAssignments";
 import ViewAssignments from "../Components/common/ViewAssignments/ViewAssignments";
+import Error from "./Error";
 
 
 
 const router = createBrowserRouter([
     {
         path: "/",
+        errorElement: <Error/>,
         element: <App />,
         children: [
             {
