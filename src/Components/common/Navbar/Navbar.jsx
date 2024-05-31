@@ -46,15 +46,19 @@ const Navbar = () => {
         <li className={`${location?.pathname === '/assignments' ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
             <NavLink to={'/assignments'}>Assignments</NavLink>
         </li>
-        <li className={`${location?.pathname === '/createAssignments' ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
-            <NavLink to={'/createAssignments'}>Create Assignments</NavLink>
-        </li>
-        <li className={`${location?.pathname === '/myAssignments' ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
-            <NavLink to={'/myAssignments'}>My Assignments</NavLink>
-        </li>
-        <li className={`${location?.pathname === '/submittedAssignments' ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
-            <NavLink to={'/submittedAssignments'}>Submitted Assignments</NavLink>
-        </li>
+        {
+            user && <>
+                <li className={`${location?.pathname === '/createAssignments' ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
+                    <NavLink to={'/createAssignments'}>Create Assignments</NavLink>
+                </li>
+                <li className={`${location?.pathname === '/myAssignments' ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
+                    <NavLink to={'/myAssignments'}>My Assignments</NavLink>
+                </li>
+                <li className={`${location?.pathname === '/submittedAssignments' ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
+                    <NavLink to={'/submittedAssignments'}>Submitted Assignments</NavLink>
+                </li>
+            </>
+        }
     </>
 
     return (
