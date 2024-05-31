@@ -50,10 +50,12 @@ const AssignmentCard = ({ singleData, handleDelete, loader, user }) => {
                         update
                     </button>
                 </Link>
-                <button
-                    className='uppercase btn bg-myColor-dark text-myText-light border-myText-default dark:border-base-200 tracking-widest text-base'>
-                    view
-                </button>
+                <Link to={`/viewDetails/${_id}`}>
+                    <button
+                        className='uppercase btn bg-myColor-dark text-myText-light border-myText-default dark:border-base-200 tracking-widest text-base'>
+                        view
+                    </button>
+                </Link>
             </div>
         </div>
     );
