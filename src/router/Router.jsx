@@ -11,13 +11,14 @@ import Assignments from "../Pages/Assignments/Assignments";
 import UpdateAssignments from "../Components/common/UpdateAssignments/UpdateAssignments";
 import ViewAssignments from "../Components/common/ViewAssignments/ViewAssignments";
 import Error from "./Error";
+import MySubmission from "../Pages/MySubmission/MySubmission";
 
 
 
 const router = createBrowserRouter([
     {
         path: "/",
-        errorElement: <Error/>,
+        errorElement: <Error />,
         element: <App />,
         children: [
             {
@@ -39,17 +40,22 @@ const router = createBrowserRouter([
             },
             {
                 path: '/assignments',
-                element: <Assignments/>
+                element: <Assignments />
             },
             {
                 path: '/update/:_id',
-                element: <PrivateRouter><UpdateAssignments/></PrivateRouter>,
-                loader: ({params}) => fetch(`http://localhost:5000/assignments?_id=${params._id}`)
+                element: <PrivateRouter><UpdateAssignments /></PrivateRouter>,
+                loader: ({ params }) => fetch(`http://localhost:5000/assignments?_id=${params._id}`)
             },
             {
                 path: '/viewDetails/:_id',
-                element: <PrivateRouter><ViewAssignments/></PrivateRouter>,
-                loader: ({params}) => fetch(`http://localhost:5000/assignments?_id=${params._id}`)
+                element: <PrivateRouter><ViewAssignments /></PrivateRouter>,
+                loader: ({ params }) => fetch(`http://localhost:5000/assignments?_id=${params._id}`)
+            },
+            {
+                path: '/myAssignments/:userUid',
+                element: <PrivateRouter><MySubmission /></PrivateRouter>,
+                loader: ({ params }) => fetch(`http://localhost:5000/submitDoc?userUid=${params.userUid}`)
             }
         ]
     },

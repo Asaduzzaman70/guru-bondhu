@@ -10,6 +10,7 @@ const Navbar = () => {
     const { user, logOut, setUser } = useContext(CreateContext);
     const location = useLocation();
     const [photo, setPhoto] = useState(null);
+    const userUid = user?.uid;
     // console.log(location.pathname);
 
 
@@ -52,7 +53,7 @@ const Navbar = () => {
                     <NavLink to={'/createAssignments'}>Create Assignments</NavLink>
                 </li>
                 <li className={`${location?.pathname === '/myAssignments' ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
-                    <NavLink to={'/myAssignments'}>My Assignments</NavLink>
+                    <NavLink to={`/myAssignments/${userUid}`}>My Assignments</NavLink>
                 </li>
                 <li className={`${location?.pathname === '/submittedAssignments' ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
                     <NavLink to={'/submittedAssignments'}>Submitted Assignments</NavLink>

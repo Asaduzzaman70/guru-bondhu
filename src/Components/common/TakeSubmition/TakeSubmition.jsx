@@ -15,11 +15,13 @@ const style = {
     boxShadow: 24,
 };
 
-const TakeSubmition = ({ attemptId }) => {
+const TakeSubmition = ({ attemptId, formData }) => {
     const { user } = useContext(CreateContext);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleMyClose = () => setOpen(false);
+
+    const {title, marks} = formData;
 
     const handleSubmitAssignments = async (e) => {
         e.preventDefault();
@@ -27,8 +29,9 @@ const TakeSubmition = ({ attemptId }) => {
         const documents = form.pdfLink.value;
         const quickNote = form.description.value;
         const userId = user?.uid;
-        const status = 'Pending'
-        const submitAssignmentData = { documents, quickNote, status, userId, attemptId };
+        const status = 'Pending';
+        const examineeName = user?.displayName;
+        const submitAssignmentData = { examineeName, documents, quickNote, status, userId, attemptId, title, marks };
         console.log(submitAssignmentData);
 
         // Implement the submission logic here

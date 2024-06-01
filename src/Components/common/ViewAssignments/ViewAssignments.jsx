@@ -3,6 +3,7 @@ import TakeSubmition from "../TakeSubmition/TakeSubmition";
 
 const ViewAssignments = () => {
     const formData = useLoaderData();
+    
     console.log(formData);
     return (
         <div className="container mx-auto p-6 md:p-0">
@@ -46,7 +47,7 @@ const ViewAssignments = () => {
                     </div>
                 </div>
                 <div>
-                    <TakeSubmition key={formData._id} attemptId={formData._id}/>
+                    <TakeSubmition key={formData._id} attemptId={formData._id} formData={formData}/>
                 </div>
             </div>
         </div>
