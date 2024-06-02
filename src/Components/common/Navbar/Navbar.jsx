@@ -63,14 +63,14 @@ const Navbar = () => {
     </>
 
     return (
-        <div className='bg-myColor-default dark:bg-myDark-light w-full shadow-lg' data-aos="fade-down">
+        <div className='bg-myColor-default dark:bg-myDark-light w-full shadow-lg z-50'>
             <div className="navbar justify-between container mx-auto">
                 <div className="navbar-start">
-                    <div className="dropdown" data-aos="fade-up" data-aos-duration="3000">
+                    <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-myPurple" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
-                        <ul tabIndex={0} className="menu bg-myColor-default dark:bg-base-300 dropdown-content mt-7 -ml-2 z-[1] text-2xl p-2 shadow rounded-md w-60 text-myPurple dark:text-myYellow font-bold uppercase animate__animated animate__fadeInUp">
+                        <ul tabIndex={0} className="menu bg-myColor-default dark:bg-myDark-light dropdown-content mt-7 -ml-2 z-[100] text-2xl p-2 shadow rounded-md w-60 text-myPurple dark:text-myYellow font-bold">
                             {navLi}
                         </ul>
                     </div>

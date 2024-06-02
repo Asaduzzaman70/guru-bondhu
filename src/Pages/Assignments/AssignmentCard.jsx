@@ -5,7 +5,7 @@ const AssignmentCard = ({ singleData, handleDelete, loader, user }) => {
     const { title, marks, photoUrl, diffLevel, _id, emailGitHubId } = singleData;
 
     return (
-        <div className="p-6 bg-myColor-default dark:bg-myDark-light rounded-xl h-full shadow-lg" data-aos="fade-up">
+        <div className="p-6 bg-myColor-default dark:bg-myDark-light rounded-xl h-full shadow-lg z-0" data-aos="fade-up">
             <div className="bg-no-repeat bg-cover bg-center h-96 rounded-lg" style={{ backgroundImage: `URL(${photoUrl})` }}></div>
             <h1 className="text-2xl text-myPurple dark:text-myYellow font-poetsen mt-12">{title}</h1>
             <div className="my-7 flex justify-between">
