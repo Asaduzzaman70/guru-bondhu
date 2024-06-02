@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-        <div className="bg-myColor-default dark:bg-base-300 shadow-success">
+        <div className="bg-myColor-default dark:bg-myDark-light shadow-success">
             <footer className="footer p-10 text-base-content container mx-auto">
                 <aside>
                     <Link to={'/'} className="h-full">

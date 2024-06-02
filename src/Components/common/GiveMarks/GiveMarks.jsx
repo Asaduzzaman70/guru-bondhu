@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { FaRegWindowClose } from 'react-icons/fa';
 import { useContext } from 'react';
-import { CreateContext } from '../../../../src/contexts/AuthProvider'; // Adjust the path if necessary
 import swal from 'sweetalert';
+import { CreateContext } from '../../../contexts/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const style = {
     position: 'absolute',
@@ -13,32 +13,32 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     boxShadow: 24,
+    maxHeight: '90vh',
+    overflow: 'auto',   
 };
 
-const TakeSubmition = ({ attemptId, formData }) => {
+const GiveMarks = ({ documents, marks, quickNote, examinerPhotoUrl, examinerDisplayName, attemptId, userId, pendingData, setPendingData, _id }) => {
     const { user } = useContext(CreateContext);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleMyClose = () => setOpen(false);
 
-    const { title, marks, photoUrl } = formData;
+    // const { title, marks, photoUrl } = formData;
 
     const handleSubmitAssignments = async (e) => {
         e.preventDefault();
         const form = e.target;
-        const documents = form.pdfLink.value;
-        const quickNote = form.description.value;
-        const userId = user?.uid;
-        const status = 'Pending';
-        const examineeName = user?.displayName;
-        const submitAssignmentData = { examineeName, documents, quickNote, status, userId, attemptId, title, marks, photoUrl };
+        const obtainedMarks = form.obtainedMarks.value;
+        const feedBack = form.feedBack.value;
+        const status = 'Complete'
+        const submitAssignmentData = { obtainedMarks, feedBack, examinerPhotoUrl, examinerDisplayName, status };
         console.log(submitAssignmentData);
 
         // Implement the submission logic here
         // Example: sending data to the backend
         try {
             const response = await fetch(`http://localhost:5000/submitDoc?attemptId=${attemptId}&&userId=${userId}`, {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -54,6 +54,9 @@ const TakeSubmition = ({ attemptId, formData }) => {
                     .then((willDelete) => {
                         if (willDelete) {
                             setOpen(false);
+                            // setPendingData
+                            const remaining = pendingData.filter(dataPen => dataPen._id !== _id);
+                            setPendingData(remaining);
                         }
                     })
             } else {
@@ -64,12 +67,7 @@ const TakeSubmition = ({ attemptId, formData }) => {
                     title: "Failed to submit assignment.",
                     text: result.error || "Unknown error.",
                     icon: "warning",
-                })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            setOpen(false);
-                        }
-                    })
+                });
             }
         } catch (error) {
             // Handle network error
@@ -85,27 +83,39 @@ const TakeSubmition = ({ attemptId, formData }) => {
 
     return (
         <div>
-            <button onClick={handleOpen} className='uppercase btn bg-myColor-dark text-myText-light border-myText-default dark:border-base-200 tracking-widest text-base'>Take assignment”</button>
+            <button onClick={handleOpen} className='uppercase btn bg-myColor-dark text-myText-light border-myText-default dark:border-base-200 tracking-widest text-base'>Give Marks</button>
             <Modal
                 open={open}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <div className='bg-myColor-light dark:bg-myDark-default rounded-md p-7 w-screen md:w-[650px] lg:w-[900px]'>
+                    <div className='bg-myColor-light dark:bg-myDark-default rounded-md py-3 px-7 w-screen md:w-[650px] lg:w-[900px]'>
                         <div className='text-right'>
-                            <button onClick={handleMyClose} className='text-4xl hover:text-myPurple dark:text-myText-light hover:dark:text-myYellow'><FaRegWindowClose /></button>
+                            <button onClick={handleMyClose} className='text-4xl hover:text-myPurple hover:dark:text-myYellow'><FaRegWindowClose /></button>
+                        </div>
+                        <div>
+                            <h1>
+                                <span className="label-text text-2xl text-myPurple dark:text-myYellow font-bold"> PDF/doc Link :</span>
+                            </h1>
+                            <Link className='break-words dark:text-myText-default' target='_blank' to={`${documents}`}>{documents}</Link>
+                            <p className='dark:text-myText-default'>
+                                <span className='text-myPurple dark:text-myYellow font-bold'>Examinee Message: - </span>{quickNote}
+                            </p>
                         </div>
                         <form onSubmit={handleSubmitAssignments} className='flex flex-col'>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text text-2xl text-myPurple dark:text-myYellow font-bold"> PDF/doc Link Submission :</span>
+                                    <span className="label-text text-2xl text-myPurple dark:text-myYellow font-bold">Give Marks : 0 - {marks}</span>
                                 </label>
                                 <input
-                                    type="text"
-                                    placeholder="PDF/doc Link"
-                                    className="input input-bordered bg-myColor-default dark:bg-myDark-light text-xl text-myText-dark dark:text-myText-light py-7 px-6"
-                                    name="pdfLink"
+                                    type="number"
+                                    placeholder="Enter Assignment Marks"
+                                    className="input input-bordered bg-myColor-default dark:bg-myDark-light text-xl capitalize text-myText-dark dark:text-myText-light py-7 px-6"
+                                    min="0"
+                                    max={marks}
+                                    name='obtainedMarks'
+                                    // onChange={handleMarksChange}
                                     required
                                 />
                             </div>
@@ -115,12 +125,12 @@ const TakeSubmition = ({ attemptId, formData }) => {
                                 </label>
                                 <textarea
                                     placeholder="Enter Your Message"
-                                    className="h-80 input-bordered bg-myColor-default dark:bg-myDark-light text-xl text-myText-dark dark:text-myText-light px-6 pt-5 rounded-xl"
-                                    name="description"
+                                    className="h-40 input-bordered bg-myColor-default dark:bg-myDark-light text-xl text-myText-dark dark:text-myText-light px-6 pt-5 rounded-xl"
+                                    name="feedBack"
                                     required
                                 />
                             </div>
-                            <div className="form-control mt-12 mb-6">
+                            <div className="form-control mt-6 mb-6">
                                 <input className="input input-bordered mx-auto bg-myYellow text-myPurple font-bold uppercase tracking-wider text-xl btn hover:opacity-85 dark:bg-myPurple dark:text-myYellow dark:hover:opacity-85 inline-block" type="submit" value="Submit" />
                             </div>
                         </form>
@@ -132,4 +142,4 @@ const TakeSubmition = ({ attemptId, formData }) => {
 }
 
 
-export default TakeSubmition;
+export default GiveMarks;

@@ -52,25 +52,25 @@ const Navbar = () => {
                 <li className={`${location?.pathname === '/createAssignments' ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
                     <NavLink to={'/createAssignments'}>Create Assignments</NavLink>
                 </li>
-                <li className={`${location?.pathname === '/myAssignments' ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
+                <li className={`${location?.pathname === `/myAssignments/${userUid}` ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
                     <NavLink to={`/myAssignments/${userUid}`}>My Assignments</NavLink>
                 </li>
-                <li className={`${location?.pathname === '/submittedAssignments' ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
-                    <NavLink to={'/submittedAssignments'}>Submitted Assignments</NavLink>
+                <li className={`${location?.pathname === '/submittedAssignments/:Pending' ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
+                    <NavLink to={'/submittedAssignments/:Pending'}>Submitted Assignments</NavLink>
                 </li>
             </>
         }
     </>
 
     return (
-        <div className='bg-myColor-default dark:bg-base-300 w-full shadow-lg' data-aos="fade-down">
+        <div className='bg-myColor-default dark:bg-myDark-light w-full shadow-lg' data-aos="fade-down">
             <div className="navbar justify-between container mx-auto">
                 <div className="navbar-start">
-                    <div className="dropdown">
+                    <div className="dropdown" data-aos="fade-up" data-aos-duration="3000">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-myPurple" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
-                        <ul tabIndex={0} className="menu bg-myColor-default dark:bg-base-300 dropdown-content mt-7 -ml-2 z-[1] text-2xl p-2 shadow rounded-md w-60 text-myPurple dark:text-myYellow font-bold uppercase">
+                        <ul tabIndex={0} className="menu bg-myColor-default dark:bg-base-300 dropdown-content mt-7 -ml-2 z-[1] text-2xl p-2 shadow rounded-md w-60 text-myPurple dark:text-myYellow font-bold uppercase animate__animated animate__fadeInUp">
                             {navLi}
                         </ul>
                     </div>
@@ -98,10 +98,8 @@ const Navbar = () => {
                                             </div>
                                         </summary>
                                         <ul className="p-2 shadow-2xl menu dropdown-content z-[1]  rounded-box w-64 right-0 bg-myColor-light dark:bg-myText-dark">
-                                            <li>
-                                                <Link className='font-bold mb-1 text-myPurple dark:text-myYellow'>
-                                                    My Assignments
-                                                </Link>
+                                            <li className={`${location?.pathname === `/myAssignments/${userUid}` ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0 px-1 text-myPurple dark:text-myYellow font-bold uppercase`}>
+                                                <NavLink to={`/myAssignments/${userUid}`}>My Assignments</NavLink>
                                             </li>
                                             <li>
                                                 <button onClick={handleLogout} className='font-bold mb-1 text-myPurple dark:text-myYellow'>

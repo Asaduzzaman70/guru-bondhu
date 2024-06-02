@@ -19,6 +19,11 @@ export default {
           light: "#f8fafc",
           default: "#64748b",
           dark: "#020617"
+        },
+        myDark: {
+          light: "#1e293b",
+          default: "#0f172a",
+          dark: "#020617"
         }
       },
       fontFamily: {

@@ -7,7 +7,7 @@ const ViewAssignments = () => {
     console.log(formData);
     return (
         <div className="container mx-auto p-6 md:p-0">
-            <div className="p-8 bg-myColor-default dark:bg-base-200 rounded-xl w-full md:w-4/5 lg:w-3/4 mx-auto my-12" data-aos="fade-up">
+            <div className="p-8 bg-myColor-default dark:bg-myDark-light rounded-xl w-full md:w-4/5 lg:w-3/4 mx-auto my-12" data-aos="fade-up">
                 <div className="bg-no-repeat bg-cover bg-center h-96 md:h-[500px] rounded-lg" style={{ backgroundImage: `URL(${formData.photoUrl})` }}></div>
                 <h1 className="text-5xl text-myPurple dark:text-myYellow font-poetsen mt-12">{formData.title}
                 </h1>

@@ -12,6 +12,7 @@ import UpdateAssignments from "../Components/common/UpdateAssignments/UpdateAssi
 import ViewAssignments from "../Components/common/ViewAssignments/ViewAssignments";
 import Error from "./Error";
 import MySubmission from "../Pages/MySubmission/MySubmission";
+import PendingAssignments from "../Pages/PendingAssignments/PendingAssignments";
 
 
 
@@ -56,6 +57,11 @@ const router = createBrowserRouter([
                 path: '/myAssignments/:userUid',
                 element: <PrivateRouter><MySubmission /></PrivateRouter>,
                 loader: ({ params }) => fetch(`http://localhost:5000/submitDoc?userUid=${params.userUid}`)
+            },
+            {
+                path: '/submittedAssignments/:statusPending',
+                element: <PrivateRouter><PendingAssignments /></PrivateRouter>,
+                loader: ({ params }) => fetch(`http://localhost:5000/submitDoc?statusPending=${params.statusPending}`)
             }
         ]
     },

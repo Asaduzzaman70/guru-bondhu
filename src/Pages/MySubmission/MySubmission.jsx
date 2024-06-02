@@ -38,7 +38,7 @@ const MySubmission = () => {
     }
 
     return (
-        <div className='container mx-auto my-20'>
+        <div className={`container mx-auto my-20 ${mySubmittedData.length === 0 ? 'h-screen':''}`}>
             <div className='text-center text-4xl mb-16 font-poetsen text-myPurple dark:text-myYellow'>
                 <h1>Your Submitted Assignments</h1>
             </div>
@@ -64,8 +64,8 @@ const MySubmission = () => {
                                 myAssignment.status,
                                 myAssignment.marks,
                                 myAssignment.obtainedMarks ? myAssignment.obtainedMarks : '0',
-                                myAssignment.photoURL ? myAssignment.photoURL : '',
-                                myAssignment.displayName ? myAssignment.displayName : '',
+                                myAssignment.examinerPhotoUrl ? myAssignment.examinerPhotoUrl : '',
+                                myAssignment.examinerDisplayName ? myAssignment.examinerDisplayName : '',
                                 myAssignment.feedBack ? myAssignment.feedBack : ''
                             ))
                         }

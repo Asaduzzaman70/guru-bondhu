@@ -21,7 +21,7 @@ const CreateAssignments = () => {
 
     // Custom Date Picker Input
     const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
-        <div className="bg-myColor-default dark:bg-base-200 text-xl capitalize text-myText-dark dark:text-myText-light w-full py-4 px-4 rounded-xl" onClick={onClick} ref={ref}>
+        <div className="bg-myColor-default dark:bg-myDark-light text-xl capitalize text-myText-dark dark:text-myText-light w-full py-4 px-4 rounded-xl" onClick={onClick} ref={ref}>
             {value}
         </div>
     ));
@@ -133,7 +133,7 @@ const CreateAssignments = () => {
                             <input
                                 type="text"
                                 placeholder="Enter Assignment Title"
-                                className="input input-bordered bg-myColor-default dark:bg-base-200 text-xl capitalize text-myText-dark dark:text-myText-light py-7 px-6"
+                                className="input input-bordered bg-myColor-default dark:bg-myDark-light text-xl capitalize text-myText-dark dark:text-myText-light py-7 px-6"
                                 name="title"
                                 value={formData.title}
                                 onChange={handleInputChange}
@@ -147,7 +147,7 @@ const CreateAssignments = () => {
                             </label>
                             <textarea
                                 placeholder="Enter Assignment Description"
-                                className="h-80 input-bordered bg-myColor-default dark:bg-base-200 text-xl text-myText-dark dark:text-myText-light px-6 pt-5 rounded-xl"
+                                className="h-80 input-bordered bg-myColor-default dark:bg-myDark-light text-xl text-myText-dark dark:text-myText-light px-6 pt-5 rounded-xl"
                                 name="description"
                                 value={formData.description}
                                 onChange={handleInputChange}
@@ -162,7 +162,7 @@ const CreateAssignments = () => {
                             <input
                                 type="number"
                                 placeholder="Enter Assignment Marks"
-                                className="input input-bordered bg-myColor-default dark:bg-base-200 text-xl capitalize text-myText-dark dark:text-myText-light py-7 px-6"
+                                className="input input-bordered bg-myColor-default dark:bg-myDark-light text-xl capitalize text-myText-dark dark:text-myText-light py-7 px-6"
                                 min="0"
                                 max="60"
                                 value={formData.marks}
@@ -176,7 +176,7 @@ const CreateAssignments = () => {
                                 <span className="label-text text-2xl text-myPurple dark:text-myYellow font-bold">Difficulty Level :</span>
                             </label>
                             <select
-                                className="select select-bordered bg-myColor-default dark:bg-base-200 text-xl capitalize text-myText-dark dark:text-myText-light px-6"
+                                className="select select-bordered bg-myColor-default dark:bg-myDark-light text-xl capitalize text-myText-dark dark:text-myText-light px-6"
                                 name="diffLevel"
                                 value={formData.diffLevel}
                                 onChange={handleInputChange}
@@ -208,7 +208,7 @@ const CreateAssignments = () => {
                             <input
                                 type="text"
                                 placeholder="Enter Assignment Photo URL"
-                                className="input input-bordered bg-myColor-default dark:bg-base-200 text-xl text-myText-dark dark:text-myText-light py-7 px-6"
+                                className="input input-bordered bg-myColor-default dark:bg-myDark-light text-xl text-myText-dark dark:text-myText-light py-7 px-6"
                                 name="photoUrl"
                                 value={formData.photoUrl}
                                 onChange={handleInputChange}
@@ -222,14 +222,14 @@ const CreateAssignments = () => {
                     </form>
                 </div>
                 {/* Another Section */}
-                <div className="p-8 bg-myColor-default dark:bg-base-200 rounded-xl" data-aos="fade-up">
+                <div className="p-8 bg-myColor-default dark:bg-myDark-light rounded-xl" data-aos="fade-up">
                     <div className="bg-no-repeat bg-cover bg-center h-96 rounded-lg" style={{ backgroundImage: `URL(${formData.photoUrl.length !== 0 ? formData.photoUrl : 'https://i.ibb.co/Zx9bTkt/logo-2.png'})` }}></div>
-                    <h1 className="text-5xl text-myPurple dark:text-myYellow font-poetsen mt-12">{formData.title.length !== 0 ? formData.title :
+                    <h1 className="text-5xl text-myPurple dark:text-myYellow font-poetsen mt-12 break-words">{formData.title.length !== 0 ? formData.title :
                         <p className="text-myText-default font-poetsen">
                             Assignment Title
                         </p>}
                     </h1>
-                    <p className="text-xl text-myText-default font-light mt-6 text-justify">
+                    <p className="text-xl text-myText-default font-light mt-6 text-justify break-words">
                         {
                             formData.description.length !== 0 ? formData.description
                                 : <span className="text-myText-default">Assignment Description</span>
