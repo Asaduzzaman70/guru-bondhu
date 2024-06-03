@@ -55,8 +55,8 @@ const Navbar = () => {
                 <li className={`${location?.pathname === `/myAssignments/${userUid}` ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
                     <NavLink to={`/myAssignments/${userUid}`}>My Assignments</NavLink>
                 </li>
-                <li className={`${location?.pathname === '/submittedAssignments/:Pending' ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
-                    <NavLink to={'/submittedAssignments/:Pending'}>Submitted Assignments</NavLink>
+                <li className={`${location?.pathname === `/submittedAssignments/:Pending/${userUid}` ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
+                    <NavLink to={`/submittedAssignments/:Pending/${userUid}`}>Submitted Assignments</NavLink>
                 </li>
             </>
         }
