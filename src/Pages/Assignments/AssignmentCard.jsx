@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const AssignmentCard = ({ singleData, handleDelete, loader, user }) => {
+const AssignmentCard = ({ singleData, handleDelete, loader, user, userUid }) => {
     const { title, marks, photoUrl, diffLevel, _id, emailGitHubId } = singleData;
 
     return (
@@ -40,17 +40,17 @@ const AssignmentCard = ({ singleData, handleDelete, loader, user }) => {
                         : ''
                 } */}
                 <button
-                    onClick={() => handleDelete(_id, emailGitHubId)}
+                    onClick={() => handleDelete(_id, emailGitHubId, user?.uid)}
                     className='uppercase btn bg-red-800 text-myText-light border-white dark:border-base-200 tracking-widest text-base'>
                     delete
                 </button>
-                <Link to={`/update/${_id}`}>
+                <Link to={`/update/${_id}/${user?.uid}`}>
                     <button
                         className='btn uppercase bg-green-800 text-myText-light border-white dark:border-base-200 tracking-widest text-base'>
                         update
                     </button>
                 </Link>
-                <Link to={`/viewDetails/${_id}`}>
+                <Link to={`/viewDetails/${_id}/${user?.uid}`}>
                     <button
                         className='uppercase btn bg-myColor-dark text-myText-light border-myText-default dark:border-base-200 tracking-widest text-base'>
                         view

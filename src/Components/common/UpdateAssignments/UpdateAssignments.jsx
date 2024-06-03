@@ -69,7 +69,7 @@ const UpdateAssignments = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    axios.put(`http://localhost:5000/assignments?_id=${singleAssignment._id}`, { formData })
+                    axios.put(`http://localhost:5000/assignments?_id=${singleAssignment._id}&&userUid=${user?.uid}`, { formData }, {withCredentials: true})
                         .then(res => {
                             console.log(res.data);
                             if (res.data.acknowledged) {

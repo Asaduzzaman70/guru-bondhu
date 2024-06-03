@@ -22,7 +22,7 @@ const Assignments = () => {
     useEffect(() => {
         const fetchAssignments = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/assignments`, {
+                const response = await axios.get(`http://localhost:5000/assignments`, {withCredentials: true}, {
                     params: { diffLevel: level || undefined }
                 });
                 setAssignment(response.data);
@@ -45,7 +45,7 @@ const Assignments = () => {
     }
 
     // handleDelete
-    const handleDelete = (_id, emailGitHubId) => {
+    const handleDelete = (_id, emailGitHubId, uid) => {
         if (user.uid === emailGitHubId) {
             swal({
                 title: "Are you sure?",
@@ -56,8 +56,9 @@ const Assignments = () => {
             })
                 .then((willDelete) => {
                     if (willDelete) {
-                        fetch(`http://localhost:5000/assignments?deleteAssignments=${_id}`, {
-                            method: 'DELETE'
+                        fetch(`http://localhost:5000/assignments?deleteAssignments=${_id}&&userUid=${uid}`, {
+                            method: 'DELETE',
+                            credentials: 'include'
                         })
                             .then(res => res.json())
                             .then(data => {

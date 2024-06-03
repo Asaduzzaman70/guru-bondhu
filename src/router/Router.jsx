@@ -44,14 +44,14 @@ const router = createBrowserRouter([
                 element: <Assignments />
             },
             {
-                path: '/update/:_id',
+                path: '/update/:_id/:userUid',
                 element: <PrivateRouter><UpdateAssignments /></PrivateRouter>,
-                loader: ({ params }) => fetch(`http://localhost:5000/assignments?_id=${params._id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/assignments?_id=${params._id}&&userUid=${params.userUid}`, {credentials: 'include'})
             },
             {
-                path: '/viewDetails/:_id',
+                path: '/viewDetails/:_id/:userUid',
                 element: <PrivateRouter><ViewAssignments /></PrivateRouter>,
-                loader: ({ params }) => fetch(`http://localhost:5000/assignments?_id=${params._id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/assignments?_id=${params._id}&&userUid=${params.userUid}`, {credentials: 'include'})
             },
             {
                 path: '/myAssignments/:userUid',
