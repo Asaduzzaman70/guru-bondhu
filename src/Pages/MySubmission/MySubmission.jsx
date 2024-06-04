@@ -1,9 +1,28 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { CreateContext } from '../../contexts/AuthProvider';
 
 const MySubmission = () => {
-    const mySubmittedData = useLoaderData();
+    // const mySubmittedData = useLoaderData();
+    // console.log(mySubmittedData);
+
+    const { user } = useContext(CreateContext);
+    const [mySubmittedData, setMySubmittedData] = useState([]);
+    const axiosSecure = useAxiosSecure();
     console.log(mySubmittedData);
+    // const url = `https://car-doctor-server-main-five.vercel.app/bookings?email=${user?.email}`;
+    const url = `/submitDoc?userUid=${user.uid}`;
+    useEffect(() => {
+        // fetch(url, { credentials: 'include' })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log('MEeeeeeeeeeeeee',data);
+        //         setBookings(data)
+        //     })
+        axiosSecure.get(url)
+            .then(res => { setMySubmittedData(res.data) })
+
+    }, [url, axiosSecure]);
 
     const tableData = (_id, title, status, marks, obtainedMarks, photoURL, displayName, feedBack) => {
         return (
@@ -11,7 +30,7 @@ const MySubmission = () => {
                 <td className='text-myPurple dark:text-myYellow text-base font-semibold'>
                     {title}
                 </td>
-                <td className={`text-center ${status === 'Pending' ? 'text-red-900 dark:text-red-500':'text-green-900'} font-bold`}>{status}</td>
+                <td className={`text-center ${status === 'Pending' ? 'text-red-900 dark:text-red-500' : 'text-green-900'} font-bold`}>{status}</td>
                 <td className='text-center'>{marks}</td>
                 <td className='text-center'>{obtainedMarks}</td>
                 <td>
@@ -38,7 +57,7 @@ const MySubmission = () => {
     }
 
     return (
-        <div className={`container mx-auto my-20 ${mySubmittedData.length === 0 ? 'h-screen':''}`}>
+        <div className={`container mx-auto my-20 ${mySubmittedData.length === 0 ? 'h-screen' : ''}`}>
             <div className='text-center text-4xl mb-16 font-poetsen text-myPurple dark:text-myYellow'>
                 <h1>Your Submitted Assignments</h1>
             </div>

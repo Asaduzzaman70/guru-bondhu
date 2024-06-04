@@ -4,8 +4,9 @@ import { useState } from "react";
 
 const PendingAssignments = () => {
     const data = useLoaderData();
-    // console.log(pendingData);
     const [pendingData, setPendingData] = useState(data);
+    console.log('I am Pending', pendingData);
+
 
 
     return (
@@ -15,7 +16,7 @@ const PendingAssignments = () => {
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {
-                    pendingData.map(data => <PendingCard key={data._id} data={data} setPendingData={setPendingData} pendingData={pendingData}/>)
+                    pendingData.map(data => <PendingCard key={data._id} data={data} setPendingData={setPendingData} pendingData={pendingData} />)
                 }
             </div>
         </div>
