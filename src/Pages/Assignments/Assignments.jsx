@@ -28,6 +28,7 @@ const Assignments = () => {
             try {
                 setLoading(true);
                 const response = await axios.get(`http://localhost:5000/assignments?diffLevel=${level}`, {withCredentials: true});
+                console.log(response.data);
                 setAssignment(response.data);
             } catch (error) {
                 console.error('Error fetching assignments:', error);
@@ -50,7 +51,7 @@ const Assignments = () => {
 
     // handleDelete
     const handleDelete = (_id, emailGitHubId, uid) => {
-        if (user.uid === emailGitHubId) {
+        if (user?.uid === emailGitHubId) {
             swal({
                 title: "Are you sure?",
                 text: "Once deleted, you will not be able to recover this imaginary file!",

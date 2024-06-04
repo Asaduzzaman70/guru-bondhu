@@ -58,18 +58,25 @@ const AuthProvider = ({ children }) => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             console.log(currentUser);
 
-            const userEmail = currentUser.uid || user.uid;
+            const userEmail = currentUser?.uid || user?.uid;
             const loaderUser = { uId: userEmail };
             console.log('UserEmail', userEmail);
 
             if (currentUser) {
-                axios.post('http://localhost:5000/jwt', loaderUser, {withCredentials: true})
+                axios.post('http://localhost:5000/jwt', loaderUser, { withCredentials: true })
                     .then(res => {
                         console.log(res.data);
                     })
 
                 setUser(currentUser);
                 setLoader(false);
+            } else {
+                axios.post('http://localhost:5000/logOut', loaderUser, {
+                    withCredentials: true
+                })
+                    .then(res => {
+                        console.log(res.data);
+                    })
             }
             setLoader(false); // Set loader to false after authentication state is determined
         });

@@ -61,7 +61,7 @@ const router = createBrowserRouter([
             {
                 path: '/submittedAssignments/:statusPending/:userUid',
                 element: <PrivateRouter><PendingAssignments /></PrivateRouter>,
-                loader: ({ params }) => fetch(`http://localhost:5000/submitDoc?statusPending=${params.statusPending}&&userUid=${params.userUid}`, { credentials: 'include' })
+                loader: ({ params }) => fetch(`http://localhost:5000/submitDoc?statusPending=${params.statusPending}&&userUid2=${params.userUid}`, { credentials: 'include' })
             }
         ]
     },
