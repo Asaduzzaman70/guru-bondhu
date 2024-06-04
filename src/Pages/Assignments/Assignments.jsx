@@ -131,6 +131,7 @@ const Assignments = () => {
                         singleData={singleData}
                         user={user}
                         loader={loader}
+                        setLoading={setLoading}
                     />)
                 }
             </div>

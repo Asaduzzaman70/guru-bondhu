@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const AssignmentCard = ({ singleData, handleDelete, loader, user, userUid }) => {
+const AssignmentCard = ({ singleData, handleDelete, loader, user, userUid, setLoading }) => {
     const { title, marks, photoUrl, diffLevel, _id, emailGitHubId } = singleData;
 
     return (
@@ -44,13 +44,13 @@ const AssignmentCard = ({ singleData, handleDelete, loader, user, userUid }) => 
                     className='uppercase btn bg-red-800 text-myText-light border-white dark:border-base-200 tracking-widest text-base'>
                     delete
                 </button>
-                <Link to={`/update/${_id}/${user?.uid}`}>
+                <Link to={`/update/${_id}/${user?.uid}`} onClick={() => setLoading(true)}>
                     <button
                         className='btn uppercase bg-green-800 text-myText-light border-white dark:border-base-200 tracking-widest text-base'>
                         update
                     </button>
                 </Link>
-                <Link to={`/viewDetails/${_id}/${user?.uid}`}>
+                <Link to={`/viewDetails/${_id}/${user?.uid}`} onClick={() => setLoading(true)}>
                     <button
                         className='uppercase btn bg-myColor-dark text-myText-light border-myText-default dark:border-base-200 tracking-widest text-base'>
                         view
