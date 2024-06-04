@@ -19,16 +19,20 @@ const Assignments = () => {
     //             .then((res) => res.json())
     // })
 
+    // , {
+    //     params: { diffLevel: level || undefined }
+    // }
+
     useEffect(() => {
         const fetchAssignments = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/assignments`, {withCredentials: true}, {
-                    params: { diffLevel: level || undefined }
-                });
+                setLoading(true);
+                const response = await axios.get(`http://localhost:5000/assignments?diffLevel=${level}`, {withCredentials: true});
                 setAssignment(response.data);
-                setLoading(true)
             } catch (error) {
                 console.error('Error fetching assignments:', error);
+            }finally{
+                setLoading(false);
             }
         };
 
@@ -36,7 +40,7 @@ const Assignments = () => {
     }, [level]);
 
 
-    if (!leading && !loader) {
+    if (leading || loader) {
         return (
             <div className="flex justify-center items-center h-screen">
                 <span className="loading loading-bars w-20 bg-myYellow dark:bg-myPurple"></span>

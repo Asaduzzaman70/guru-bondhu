@@ -1,6 +1,11 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { CreateContext } from "../../../contexts/AuthProvider";
+import { MdOutlineAlternateEmail, MdPhone } from "react-icons/md";
 
 const Footer = () => {
+    const { user } = useContext(CreateContext);
+    const userUid = user?.uid;
     return (
         <div className="bg-myColor-default dark:bg-myDark-light shadow-success">
             <footer className="footer p-10 text-base-content container mx-auto">
@@ -20,6 +25,11 @@ const Footer = () => {
                     <a className="text-xl text-myText-dark dark:text-myText-light hover:text-myPurple dark:hover:text-myYellow" href="#home">Home</a>
                     <a className="text-xl text-myText-dark dark:text-myText-light hover:text-myPurple dark:hover:text-myYellow" href="#feature">Discover Our Key Features</a>
                     <a className="text-xl text-myText-dark dark:text-myText-light hover:text-myPurple dark:hover:text-myYellow" href="#faq">FAQ</a>
+                    <NavLink className="text-xl text-myText-dark dark:text-myText-light hover:text-myPurple dark:hover:text-myYellow" to={'/'}>Home</NavLink>
+                    <NavLink className="text-xl text-myText-dark dark:text-myText-light hover:text-myPurple dark:hover:text-myYellow" to={'/assignments'}>Assignments</NavLink>
+                    <NavLink className="text-xl text-myText-dark dark:text-myText-light hover:text-myPurple dark:hover:text-myYellow" to={'/createAssignments'}>Create Assignments</NavLink>
+                    <NavLink className="text-xl text-myText-dark dark:text-myText-light hover:text-myPurple dark:hover:text-myYellow" to={`/myAssignments/${userUid}`}>My Assignments</NavLink>
+                    <NavLink className="text-xl text-myText-dark dark:text-myText-light hover:text-myPurple dark:hover:text-myYellow" to={`/submittedAssignments/:Pending/${userUid}`}>Submitted Assignments</NavLink>
                 </nav>
                 <nav>
                     <h6 className="footer-title text-2xl text-myText-dark dark:text-myText-light">Participate with us</h6>
@@ -28,7 +38,8 @@ const Footer = () => {
                 </nav>
                 <nav>
                     <h6 className="footer-title text-2xl text-myText-dark dark:text-myText-light">Customs</h6>
-
+                    <p className="flex items-center text-base space-x-2 text-myText-default dark:text-myText-light"><MdOutlineAlternateEmail/> <span>guru_bondhu@gmail.com</span></p>
+                    <p className="flex items-center text-base space-x-2 text-myText-default dark:text-myText-light"><MdPhone/> <span>+8815075*****</span></p>
                 </nav>
             </footer>
         </div>
