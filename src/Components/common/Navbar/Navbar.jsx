@@ -55,8 +55,8 @@ const Navbar = () => {
                 <li className={`${location?.pathname === `/myAssignments` ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
                     <NavLink to={`/myAssignments`}>My Assignments</NavLink>
                 </li>
-                <li className={`${location?.pathname === `/submittedAssignments/:Pending/${userUid}` ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
-                    <NavLink to={`/submittedAssignments/:Pending/${userUid}`}>Submitted Assignments</NavLink>
+                <li className={`${location?.pathname === `/submittedAssignments` ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0`}>
+                    <NavLink to={`/submittedAssignments`}>Submitted Assignments</NavLink>
                 </li>
             </>
         }
@@ -98,8 +98,8 @@ const Navbar = () => {
                                             </div>
                                         </summary>
                                         <ul className="p-2 shadow-2xl menu dropdown-content z-[1]  rounded-box w-64 right-0 bg-myColor-light dark:bg-myText-dark">
-                                            <li className={`${location?.pathname === `/myAssignments/${userUid}` ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0 px-1 text-myPurple dark:text-myYellow font-bold uppercase`}>
-                                                <NavLink to={`/myAssignments/${userUid}`}>My Assignments</NavLink>
+                                            <li className={`${location?.pathname === `/myAssignments` ? 'text-base-300 dark:text-myColor-dark' : ''} border-b-2 border-base-300 dark:border-myColor-dark lg:border-b-0 px-1 text-myPurple dark:text-myYellow font-bold uppercase`}>
+                                                <NavLink to={`/myAssignments`}>My Assignments</NavLink>
                                             </li>
                                             <li>
                                                 <button onClick={handleLogout} className='font-bold mb-1 text-myPurple dark:text-myYellow'>

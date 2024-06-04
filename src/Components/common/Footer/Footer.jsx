@@ -28,8 +28,8 @@ const Footer = () => {
                     <NavLink className="text-xl text-myText-dark dark:text-myText-light hover:text-myPurple dark:hover:text-myYellow" to={'/'}>Home</NavLink>
                     <NavLink className="text-xl text-myText-dark dark:text-myText-light hover:text-myPurple dark:hover:text-myYellow" to={'/assignments'}>Assignments</NavLink>
                     <NavLink className="text-xl text-myText-dark dark:text-myText-light hover:text-myPurple dark:hover:text-myYellow" to={'/createAssignments'}>Create Assignments</NavLink>
-                    <NavLink className="text-xl text-myText-dark dark:text-myText-light hover:text-myPurple dark:hover:text-myYellow" to={`/myAssignments/${userUid}`}>My Assignments</NavLink>
-                    <NavLink className="text-xl text-myText-dark dark:text-myText-light hover:text-myPurple dark:hover:text-myYellow" to={`/submittedAssignments/:Pending/${userUid}`}>Submitted Assignments</NavLink>
+                    <NavLink className="text-xl text-myText-dark dark:text-myText-light hover:text-myPurple dark:hover:text-myYellow" to={`/myAssignments`}>My Assignments</NavLink>
+                    <NavLink className="text-xl text-myText-dark dark:text-myText-light hover:text-myPurple dark:hover:text-myYellow" to={`/submittedAssignments`}>Submitted Assignments</NavLink>
                 </nav>
                 <nav>
                     <h6 className="footer-title text-2xl text-myText-dark dark:text-myText-light">Participate with us</h6>
