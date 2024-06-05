@@ -32,7 +32,7 @@ const Assignments = () => {
         const fetchAssignments = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`http://localhost:5000/assignments?diffLevel=${level}&page=${currentPage}&size=${itemPerPage}`, { withCredentials: true });
+                const response = await axios.get(`https://guru-bondhu-server.vercel.app/assignments?diffLevel=${level}&page=${currentPage}&size=${itemPerPage}`, { withCredentials: true });
                 // console.log(response.data);
                 setAssignment(response.data);
             } catch (error) {
@@ -66,7 +66,7 @@ const Assignments = () => {
             })
                 .then((willDelete) => {
                     if (willDelete) {
-                        fetch(`http://localhost:5000/assignments?deleteAssignments=${_id}&&userUid=${uid}`, {
+                        fetch(`https://guru-bondhu-server.vercel.app/assignments?deleteAssignments=${_id}&&userUid=${uid}`, {
                             method: 'DELETE',
                             credentials: 'include'
                         })

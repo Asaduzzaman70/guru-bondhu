@@ -33,7 +33,7 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login />,
-                loader: () => fetch('http://localhost:5000/users')
+                loader: () => fetch('https://guru-bondhu-server.vercel.app/users')
             },
             {
                 path: '/createAssignments',
@@ -42,27 +42,27 @@ const router = createBrowserRouter([
             {
                 path: '/assignments',
                 element: <Assignments />,
-                loader: () => fetch(`http://localhost:5000/assignmentsCount`)
+                loader: () => fetch(`https://guru-bondhu-server.vercel.app/assignmentsCount`)
             },
             {
                 path: '/update/:_id/:userUid',
                 element: <PrivateRouter><UpdateAssignments /></PrivateRouter>,
-                loader: ({ params }) => fetch(`http://localhost:5000/assignments?_id=${params._id}&&userUid=${params.userUid}`, {credentials: 'include'})
+                loader: ({ params }) => fetch(`https://guru-bondhu-server.vercel.app/assignments?_id=${params._id}&&userUid=${params.userUid}`, {credentials: 'include'})
             },
             {
                 path: '/viewDetails/:_id/:userUid',
                 element: <PrivateRouter><ViewAssignments /></PrivateRouter>,
-                loader: ({ params }) => fetch(`http://localhost:5000/assignments?_id=${params._id}&&userUid=${params.userUid}`, {credentials: 'include'})
+                loader: ({ params }) => fetch(`https://guru-bondhu-server.vercel.app/assignments?_id=${params._id}&&userUid=${params.userUid}`, {credentials: 'include'})
             },
             {
                 path: '/myAssignments',
                 element: <PrivateRouter><MySubmission /></PrivateRouter>,
-                // loader: ({ params }) => fetch(`http://localhost:5000/submitDoc?userUid=${params.userUid}`, { credentials: 'include' })
+                // loader: ({ params }) => fetch(`https://guru-bondhu-server.vercel.app/submitDoc?userUid=${params.userUid}`, { credentials: 'include' })
             },
             {
                 path: '/submittedAssignments',
                 element: <PrivateRouter><PendingAssignments /></PrivateRouter>,
-                // loader: ({ params }) => fetch(`http://localhost:5000/submitDoc?statusPending=${params.statusPending}&&userUid2=${params.userUid}`, { credentials: 'include' })
+                // loader: ({ params }) => fetch(`https://guru-bondhu-server.vercel.app/submitDoc?statusPending=${params.statusPending}&&userUid2=${params.userUid}`, { credentials: 'include' })
             }
         ]
     },

@@ -75,7 +75,7 @@ const CreateAssignments = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    axios.post('http://localhost:5000/assignments', { ...form, emailGitHubId, name })
+                    axios.post('https://guru-bondhu-server.vercel.app/assignments', { ...form, emailGitHubId, name })
                         .then(res => {
                             console.log(res.data);
                             if (res.data.acknowledged) {
@@ -101,7 +101,7 @@ const CreateAssignments = () => {
                 }
             });
 
-        // axios.post('http://localhost:5000/assignments', { ...form, emailGitHubId, name })
+        // axios.post('https://guru-bondhu-server.vercel.app/assignments', { ...form, emailGitHubId, name })
         //     .then(res => {
         //         console.log(res.data);
         //     })

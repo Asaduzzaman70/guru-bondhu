@@ -48,7 +48,7 @@ const Login = () => {
                 const findUser = users.find(user => user.email === email);
                 if (!findUser) {
                     // If user doesn't exist, make a POST request to create the user
-                    fetch('http://localhost:5000/users', {
+                    fetch('https://guru-bondhu-server.vercel.app/users', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

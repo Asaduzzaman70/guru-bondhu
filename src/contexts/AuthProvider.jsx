@@ -63,7 +63,7 @@ const AuthProvider = ({ children }) => {
             console.log('UserEmail', userEmail);
 
             if (currentUser) {
-                axios.post('http://localhost:5000/jwt', loaderUser, { withCredentials: true })
+                axios.post('https://guru-bondhu-server.vercel.app/jwt', loaderUser, { withCredentials: true })
                     .then(res => {
                         console.log(res.data);
                     })
@@ -71,7 +71,7 @@ const AuthProvider = ({ children }) => {
                 setUser(currentUser);
                 setLoader(false);
             } else {
-                axios.post('http://localhost:5000/logOut', loaderUser, {
+                axios.post('https://guru-bondhu-server.vercel.app/logOut', loaderUser, {
                     withCredentials: true
                 })
                     .then(res => {

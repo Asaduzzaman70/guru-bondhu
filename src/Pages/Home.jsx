@@ -8,7 +8,7 @@ const Home = () => {
     const { isPending, isError, error, data } = useQuery({
         queryKey: ['faq_info'],
         queryFn: () =>
-            fetch('http://localhost:5000/faq_info').then((res) =>
+            fetch('https://guru-bondhu-server.vercel.app/faq_info').then((res) =>
                 res.json(),
             ),
     })

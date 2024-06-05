@@ -48,7 +48,7 @@ const TakeSubmition = ({ attemptId, formData }) => {
         // Implement the submission logic here
         // Example: sending data to the backend
         try {
-            const response = await fetch(`http://localhost:5000/submitDoc?attemptId=${attemptId}&&userId=${userId}`, {
+            const response = await fetch(`https://guru-bondhu-server.vercel.app/submitDoc?attemptId=${attemptId}&&userId=${userId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

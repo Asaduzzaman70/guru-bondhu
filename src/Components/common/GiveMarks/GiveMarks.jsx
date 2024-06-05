@@ -37,7 +37,7 @@ const GiveMarks = ({ documents, marks, quickNote, examinerPhotoUrl, examinerDisp
         // Implement the submission logic here
         // Example: sending data to the backend
         try {
-            const response = await fetch(`http://localhost:5000/submitDoc?attemptId=${attemptId}&&userId=${userId}`, {
+            const response = await fetch(`https://guru-bondhu-server.vercel.app/submitDoc?attemptId=${attemptId}&&userId=${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

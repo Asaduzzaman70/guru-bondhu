@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { CreateContext } from "../contexts/AuthProvider";
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://guru-bondhu-server.vercel.app',
     withCredentials: true
 })
 

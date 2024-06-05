@@ -37,7 +37,7 @@ const Register = () => {
                         console.log(result);
                         // Save user information in the database
                         const emailAndUid = { email };
-                        fetch('http://localhost:5000/users', {
+                        fetch('https://guru-bondhu-server.vercel.app/users', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
