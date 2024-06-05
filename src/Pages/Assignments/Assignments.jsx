@@ -31,7 +31,7 @@ const Assignments = () => {
         const fetchAssignments = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`http://localhost:5000/assignments?diffLevel=${level}`, { withCredentials: true });
+                const response = await axios.get(`http://localhost:5000/assignments?diffLevel=${level}&page=${currentPage}&size=${itemPerPage}`, { withCredentials: true });
                 // console.log(response.data);
                 setAssignment(response.data);
             } catch (error) {
@@ -42,7 +42,7 @@ const Assignments = () => {
         };
 
         fetchAssignments();
-    }, [level]);
+    }, [level, currentPage, itemPerPage]);
 
 
     if (leading || loader) {
@@ -149,7 +149,7 @@ const Assignments = () => {
                     />)
                 }
             </div>
-            <div className='space-x-6 text-center mt-12'>
+            <div className={`space-x-6 text-center mt-12 ${level && 'hidden'}`}>
                 <p>{currentPage}</p>
                 <div className='space-x-2 inline-block' data-aos="fade-up">
                     <button
@@ -173,7 +173,7 @@ const Assignments = () => {
                 <select value={itemPerPage} onChange={handleItemPerPage} data-aos="fade-up" className="btn bg-transparent text-myPurple text-2xl border-myYellow hover:text-myColor-dark">
                     <option value="3">3</option>
                     <option value="6">6</option>
-                    <option value="10">10</option>
+                    <option value="9">9</option>
                 </select>
             </div>
         </div>
