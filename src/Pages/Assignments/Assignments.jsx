@@ -7,6 +7,7 @@ import { FaDownLong } from 'react-icons/fa6';
 import { useContext } from "react";
 import { CreateContext } from '../../contexts/AuthProvider';
 import { useLoaderData } from 'react-router-dom';
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
 
 const Assignments = () => {
     const { user, loader } = useContext(CreateContext);
@@ -149,26 +150,30 @@ const Assignments = () => {
                     />)
                 }
             </div>
-            <div className={`space-x-6 text-center mt-12 ${level && 'hidden'}`}>
-                <p>{currentPage}</p>
-                <div className='space-x-2 inline-block' data-aos="fade-up">
+            <div className={`space-x-6 text-center mt-12 ${level && 'hidden'} flex md:flex-row items-center justify-center`}>
+                {/* <p>{currentPage}</p> */}
+                <div className='space-x-2 flex flex-row items-center flex-wrap' data-aos="fade-up">
                     <button
-                        className='btn text-myText-dark text-2xl border-myText-dark hover:text-myColor-dark bg-transparent'
+                        className='btn text-myText-dark text-2xl border-myText-default hover:text-myColor-light bg-transparent'
                         onClick={() => setCurrentPage(currentPage > 0 ? currentPage - 1 : currentPage)}
-                    >Previous</button>
+                    >
+                        <FaArrowAltCircleLeft />
+                    </button>
                     {
                         pages.map(page => <button
                             key={page}
-                            className={`btn btn-square text-myText-dark text-2xl border-myText-dark hover:text-myColor-dark
-                            ${currentPage === page ? 'bg-myPurple' : 'bg-transparent'}
+                            className={`btn btn-square text-myText-dark text-2xl border-myText-default hover:text-myColor-dark
+                            ${currentPage === page ? 'bg-myPurple text-myText-light' : 'bg-transparent'}
                             `}
                             onClick={() => setCurrentPage(page)}
                         >{page}</button>)
                     }
                     <button
-                        className='btn text-myText-dark text-2xl border-myText-dark hover:text-myColor-dark bg-transparent'
+                        className='btn text-myText-dark text-2xl border-myText-default hover:text-myColor-light bg-transparent'
                         onClick={() => setCurrentPage(currentPage < pages.length - 1 ? currentPage + 1 : currentPage)}
-                    >Next</button>
+                    >
+                        <FaArrowAltCircleRight/>
+                    </button>
                 </div>
                 <select value={itemPerPage} onChange={handleItemPerPage} data-aos="fade-up" className="btn bg-transparent text-myPurple text-2xl border-myYellow hover:text-myColor-dark">
                     <option value="3">3</option>

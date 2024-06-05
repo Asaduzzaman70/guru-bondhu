@@ -14,7 +14,7 @@ const style = {
     transform: 'translate(-50%, -50%)',
     boxShadow: 24,
     maxHeight: '90vh',
-    overflow: 'auto',   
+    overflow: 'auto',
 };
 
 const GiveMarks = ({ documents, marks, quickNote, examinerPhotoUrl, examinerDisplayName, attemptId, userId, pendingData, setPendingData, _id }) => {
@@ -99,7 +99,8 @@ const GiveMarks = ({ documents, marks, quickNote, examinerPhotoUrl, examinerDisp
                                 <span className="label-text text-2xl text-myPurple dark:text-myYellow font-bold"> PDF/doc Link :</span>
                             </h1>
                             <Link className='break-words dark:text-myText-default' target='_blank' to={`${documents}`}>{documents}</Link>
-                            <p className='dark:text-myText-default'>
+                            <iframe className='p-2 rounded-xl bg-myPurple dark:bg-myYellow mt-2' src={documents} width='100%' height='500px' />
+                            <p className='dark:text-myText-default mt-4'>
                                 <span className='text-myPurple dark:text-myYellow font-bold'>Examinee Message: - </span>{quickNote}
                             </p>
                         </div>
