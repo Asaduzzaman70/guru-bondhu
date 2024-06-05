@@ -154,7 +154,7 @@ const Assignments = () => {
                 {/* <p>{currentPage}</p> */}
                 <div className='space-x-2 flex flex-row items-center flex-wrap' data-aos="fade-up">
                     <button
-                        className='btn text-myText-dark text-2xl border-myText-default hover:text-myColor-light bg-transparent'
+                        className='btn text-myText-dark dark:text-myText-light text-2xl border-myText-default hover:text-myColor-light bg-transparent'
                         onClick={() => setCurrentPage(currentPage > 0 ? currentPage - 1 : currentPage)}
                     >
                         <FaArrowAltCircleLeft />
@@ -162,20 +162,20 @@ const Assignments = () => {
                     {
                         pages.map(page => <button
                             key={page}
-                            className={`btn btn-square text-myText-dark text-2xl border-myText-default hover:text-myColor-dark
-                            ${currentPage === page ? 'bg-myPurple text-myText-light' : 'bg-transparent'}
+                            className={`btn btn-square text-myText-dark dark:text-myText-light text-2xl border-myText-default hover:text-myColor-dark dark:hover:text-myColor-light
+                            ${currentPage === page ? 'bg-myPurple dark:bg-myYellow text-myText-light dark:text-myText-dark' : 'bg-transparent'}
                             `}
                             onClick={() => setCurrentPage(page)}
                         >{page}</button>)
                     }
                     <button
-                        className='btn text-myText-dark text-2xl border-myText-default hover:text-myColor-light bg-transparent'
+                        className='btn text-myText-dark dark:text-myText-light text-2xl border-myText-default hover:text-myColor-light bg-transparent'
                         onClick={() => setCurrentPage(currentPage < pages.length - 1 ? currentPage + 1 : currentPage)}
                     >
                         <FaArrowAltCircleRight/>
                     </button>
                 </div>
-                <select value={itemPerPage} onChange={handleItemPerPage} data-aos="fade-up" className="btn bg-transparent text-myPurple text-2xl border-myYellow hover:text-myColor-dark">
+                <select value={itemPerPage} onChange={handleItemPerPage} data-aos="fade-up" className="btn bg-transparent text-myPurple dark:text-myYellow text-2xl border-myPurple dark:border-myYellow hover:text-myColor-light dark:hover:text-myColor-light">
                     <option value="3">3</option>
                     <option value="6">6</option>
                     <option value="9">9</option>
