@@ -6,33 +6,37 @@ import swal from 'sweetalert';
 import { FaDownLong } from 'react-icons/fa6';
 import { useContext } from "react";
 import { CreateContext } from '../../contexts/AuthProvider';
+import { useLoaderData } from 'react-router-dom';
 
 const Assignments = () => {
     const { user, loader } = useContext(CreateContext);
     const [level, setLevel] = useState('');
     const [assignment, setAssignment] = useState([]);
     const [leading, setLoading] = useState(false);
-    // const { isPending, isError, error, data } = useQuery({
-    //     queryKey: ['assignments'],
-    //     queryFn: () =>
-    //         fetch(`http://localhost:5000/assignments?diffLevel=${level}`)
-    //             .then((res) => res.json())
-    // })
 
-    // , {
-    //     params: { diffLevel: level || undefined }
+
+    const { assignmentsCount } = useLoaderData();
+    const [currentPage, setCurrentPage] = useState(0);
+    const [itemPerPage, setItemPerPage] = useState(6);
+    const numberOfPages = Math.ceil(assignmentsCount / itemPerPage);
+
+    // const pages = [];
+    // for(let i = 0; i < numberOfPages; i++){
+    //     pages.push(i);
     // }
+    const pages = [...Array(numberOfPages).keys()]
+    console.log(pages);
 
     useEffect(() => {
         const fetchAssignments = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`http://localhost:5000/assignments?diffLevel=${level}`, {withCredentials: true});
-                console.log(response.data);
+                const response = await axios.get(`http://localhost:5000/assignments?diffLevel=${level}`, { withCredentials: true });
+                // console.log(response.data);
                 setAssignment(response.data);
             } catch (error) {
                 console.error('Error fetching assignments:', error);
-            }finally{
+            } finally {
                 setLoading(false);
             }
         };
@@ -68,7 +72,7 @@ const Assignments = () => {
                             .then(res => res.json())
                             .then(data => {
                                 // Handle response
-                                console.log(data);
+                                // console.log(data);
                                 if (data.deletedCount > 0) {
                                     swal("Poof! Your imaginary file has been deleted!", {
                                         icon: "success",
@@ -94,7 +98,7 @@ const Assignments = () => {
         }
     }
 
-    console.log(assignment);
+    // console.log(assignment);
 
     const handleEasy = (arg) => {
         if (arg === 'Easy') {
@@ -110,6 +114,15 @@ const Assignments = () => {
             setLevel('');
         }
     }
+
+    const handleItemPerPage = (e) => {
+        // console.log('The Item Page:-', e.target.value);
+        const val = parseInt(e.target.value);
+        setItemPerPage(val);
+        setCurrentPage(0);
+    }
+    console.log('Pagination button', currentPage);
+
 
     return (
         <div className='container mx-auto my-24'>
@@ -135,6 +148,33 @@ const Assignments = () => {
                         setLoading={setLoading}
                     />)
                 }
+            </div>
+            <div className='space-x-6 text-center mt-12'>
+                <p>{currentPage}</p>
+                <div className='space-x-2 inline-block' data-aos="fade-up">
+                    <button
+                        className='btn text-myText-dark text-2xl border-myText-dark hover:text-myColor-dark bg-transparent'
+                        onClick={() => setCurrentPage(currentPage > 0 ? currentPage - 1 : currentPage)}
+                    >Previous</button>
+                    {
+                        pages.map(page => <button
+                            key={page}
+                            className={`btn btn-square text-myText-dark text-2xl border-myText-dark hover:text-myColor-dark
+                            ${currentPage === page ? 'bg-myPurple' : 'bg-transparent'}
+                            `}
+                            onClick={() => setCurrentPage(page)}
+                        >{page}</button>)
+                    }
+                    <button
+                        className='btn text-myText-dark text-2xl border-myText-dark hover:text-myColor-dark bg-transparent'
+                        onClick={() => setCurrentPage(currentPage < pages.length - 1 ? currentPage + 1 : currentPage)}
+                    >Next</button>
+                </div>
+                <select value={itemPerPage} onChange={handleItemPerPage} data-aos="fade-up" className="btn bg-transparent text-myPurple text-2xl border-myYellow hover:text-myColor-dark">
+                    <option value="3">3</option>
+                    <option value="6">6</option>
+                    <option value="10">10</option>
+                </select>
             </div>
         </div>
     );
