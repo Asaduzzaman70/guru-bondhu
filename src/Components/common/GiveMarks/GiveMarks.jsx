@@ -99,6 +99,8 @@ const GiveMarks = ({ documents, marks, quickNote, examinerPhotoUrl, examinerDisp
                                 <span className="label-text text-2xl text-myPurple dark:text-myYellow font-bold"> PDF/doc Link :</span>
                             </h1>
                             <Link className='break-words dark:text-myText-default' target='_blank' to={`${documents}`}>{documents}</Link>
+                            <br />
+                            <code className='text-myPurple dark:text-myYellow font-bold'>PDF Preview:-</code>
                             <iframe className='p-2 rounded-xl bg-myPurple dark:bg-myYellow mt-2' src={documents} width='100%' height='500px' />
                             <p className='dark:text-myText-default mt-4'>
                                 <span className='text-myPurple dark:text-myYellow font-bold'>Examinee Message: - </span>{quickNote}

@@ -23,10 +23,21 @@ const TakeSubmition = ({ attemptId, formData }) => {
 
     const { title, marks, photoUrl } = formData;
 
+    const convertToPreviewLink = (url) => {
+        const fileIdMatch = url.match(/\/d\/(.+?)\//);
+        if (fileIdMatch) {
+            const fileId = fileIdMatch[1];
+            return `https://drive.google.com/file/d/${fileId}/preview`;
+        }
+        return url;
+    };
+
     const handleSubmitAssignments = async (e) => {
         e.preventDefault();
         const form = e.target;
-        const documents = form.pdfLink.value;
+
+        const documents = convertToPreviewLink(form.pdfLink.value);
+
         const quickNote = form.description.value;
         const userId = user?.uid;
         const status = 'Pending';
@@ -98,7 +109,7 @@ const TakeSubmition = ({ attemptId, formData }) => {
                         </div>
                         <form onSubmit={handleSubmitAssignments} className='flex flex-col'>
                             <div className="form-control">
-                                <label className="label">
+                                <label className="flex flex-col mb-4">
                                     <span className="label-text text-2xl text-myPurple dark:text-myYellow font-bold"> PDF/doc Link Submission :</span>
                                 </label>
                                 <input
